@@ -9,18 +9,18 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [StaticAppModule::class])
 abstract class AppModule {
     @Binds
     abstract fun providerSchedulerProvider(provider: SchedulerProviderImpl): SchedulerProvider
+}
 
-    @Module
-    companion object {
-        @Provides
-        @Singleton
-        @JvmStatic
-        fun provideApplicationContext(app: App): Context {
-            return app
-        }
+@Module
+object StaticAppModule {
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun provideApplicationContext(app: App): Context {
+        return app
     }
 }
