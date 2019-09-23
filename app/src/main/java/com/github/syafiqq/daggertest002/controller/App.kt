@@ -5,7 +5,7 @@ import android.os.Handler
 import android.util.Log
 import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.BuildConfig
-import com.github.syafiqq.daggertest002.mode.concurrent.SchedulerProvider
+import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
@@ -16,7 +16,7 @@ class App : DaggerApplication() {
     @Inject
     lateinit var context:Context
     @Inject
-    lateinit var schedulers:SchedulerProvider
+    lateinit var schedulers: SchedulerProvider
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return DaggerAppComponent.factory().create(this)

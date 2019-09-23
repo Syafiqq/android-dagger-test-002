@@ -1,4 +1,4 @@
-package com.github.syafiqq.daggertest002.mode.concurrent
+package com.github.syafiqq.daggertest002.model.concurrent
 
 import io.reactivex.Scheduler
 

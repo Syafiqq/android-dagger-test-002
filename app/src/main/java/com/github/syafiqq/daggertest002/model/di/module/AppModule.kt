@@ -2,8 +2,8 @@ package com.github.syafiqq.daggertest002.model.di.module
 
 import android.content.Context
 import com.github.syafiqq.daggertest002.controller.App
-import com.github.syafiqq.daggertest002.mode.concurrent.SchedulerProvider
-import com.github.syafiqq.daggertest002.mode.concurrent.SchedulerProviderImpl
+import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
+import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProviderImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
