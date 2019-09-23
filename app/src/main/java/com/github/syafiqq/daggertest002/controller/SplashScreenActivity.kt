@@ -1,6 +1,7 @@
 package com.github.syafiqq.daggertest002.controller
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.SystemClock
@@ -49,7 +50,9 @@ class SplashScreenActivity : AppCompatActivity() {
             .subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                Timber.d("Clock Passed")
+                startActivity(Intent(this, LoginActivity::class.java)).also {
+                    finish()
+                }
             }
     }
 
