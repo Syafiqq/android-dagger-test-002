@@ -3,4 +3,6 @@
 
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
     <string name="prepare_app">Prepare App</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>
