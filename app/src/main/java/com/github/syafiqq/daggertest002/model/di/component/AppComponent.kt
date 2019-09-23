@@ -1,4 +1,4 @@
-package com.github.syafiqq.daggertest002.model.di.scope.model.di.component
+package com.github.syafiqq.daggertest002.model.di.component
 
 import com.github.syafiqq.daggertest002.controller.App
 import dagger.Component
