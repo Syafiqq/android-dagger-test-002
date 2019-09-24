@@ -43,6 +43,9 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         Handler().postDelayed(100) {
+            Timber.d("User Manager ${manager == null}")
+            Timber.d("Context ${context == null}")
+            Timber.d("Scheduler Provider ${schedulers== null}")
             Timber.d("App Counter ${counter == null}")
             Timber.d("Activity Counter : ${counter1 == null}")
 
