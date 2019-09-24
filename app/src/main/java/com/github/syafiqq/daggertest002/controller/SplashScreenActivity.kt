@@ -7,7 +7,9 @@ import android.os.Handler
 import android.os.SystemClock
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.R
+import com.github.syafiqq.daggertest002.model.dump.CounterContract
 import dagger.android.AndroidInjection
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
@@ -15,12 +17,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 class SplashScreenActivity : AppCompatActivity() {
+    @Inject
+    lateinit var counter: CounterContract
     private val mHideHandler = Handler()
     private val mHidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -56,6 +61,13 @@ class SplashScreenActivity : AppCompatActivity() {
                     finish()
                 }
             }
+        Handler().postDelayed(100) {
+            Timber.d("CounterContract : ${counter == null}")
+
+            for(i in 1..5) {
+                Timber.d("CounterContract : [${counter.value}]")
+            }
+        }
     }
 
     private fun dummyWaiting(): ObservableSource<Int> {

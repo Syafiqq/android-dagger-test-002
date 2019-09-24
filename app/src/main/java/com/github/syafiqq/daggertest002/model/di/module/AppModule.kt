@@ -6,6 +6,9 @@ import com.github.syafiqq.daggertest002.model.api.IdentityServer
 import com.github.syafiqq.daggertest002.model.api.IdentityServerImpl
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProviderImpl
+import com.github.syafiqq.daggertest002.model.di.scope.ActivityScope
+import com.github.syafiqq.daggertest002.model.dump.CounterContract
+import com.github.syafiqq.daggertest002.model.dump.CounterImpl
 import com.github.syafiqq.daggertest002.model.service.identity.UserManager
 import com.github.syafiqq.daggertest002.model.service.identity.UserManagerImpl
 import dagger.Binds
@@ -35,4 +38,9 @@ object StaticAppModule {
     @Singleton
     @JvmStatic
     fun provideUserManager(server: IdentityServer): UserManager = UserManagerImpl(server)
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun providedCounter(): CounterContract = CounterImpl(0)
 }

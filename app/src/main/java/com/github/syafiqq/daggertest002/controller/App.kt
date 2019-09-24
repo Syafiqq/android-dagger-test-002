@@ -7,6 +7,7 @@ import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.BuildConfig
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.di.component.DaggerAppComponent
+import com.github.syafiqq.daggertest002.model.dump.CounterContract
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import timber.log.Timber
@@ -17,6 +18,8 @@ class App : DaggerApplication() {
     lateinit var context:Context
     @Inject
     lateinit var schedulers: SchedulerProvider
+    @Inject
+    lateinit var counter: CounterContract
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return DaggerAppComponent.factory().create(this)
@@ -33,6 +36,11 @@ class App : DaggerApplication() {
         Handler().postDelayed(2000) {
             Timber.d("Context : ${context == null}")
             Timber.d("SchedulerProvider : ${schedulers == null}")
+            Timber.d("CounterContract : ${counter == null}")
+
+            for(i in 1..5) {
+                Timber.d("CounterContract : [${counter.value}]")
+            }
         }
     }
 
