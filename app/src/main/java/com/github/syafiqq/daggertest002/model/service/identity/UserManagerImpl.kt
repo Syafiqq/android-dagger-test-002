@@ -33,6 +33,10 @@ class UserManagerImpl @Inject constructor(private val server: IdentityServer) : 
         }
     }
 
+    override fun isLoggedIn(): Boolean {
+        return session != null
+    }
+
     override fun getUser(id: String): Flowable<UserEntity> {
         return Flowable.defer {
             if (session == null)
