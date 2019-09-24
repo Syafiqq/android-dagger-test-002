@@ -1,41 +1,33 @@
 package com.github.syafiqq.daggertest002.model.api
 
+import android.os.SystemClock
 import android.text.TextUtils
 import com.github.syafiqq.daggertest002.model.dump.Storage
 import com.github.syafiqq.daggertest002.model.entity.UserEntity
-import io.reactivex.Flowable
 
 class IdentityServerImpl : IdentityServer {
     val users = Storage.users
     var session: UserEntity? = null
 
-    override fun login(email: String, password: String): Flowable<UserEntity> {
+    override fun login(email: String, password: String): UserEntity? {
+        SystemClock.sleep(1000)
         return users.values.firstOrNull {
             TextUtils.equals(email, it.email) and TextUtils.equals(password, it.password)
-        }.let {
-            if (it != null) {
-                session = it
-                Flowable.just(it)
-            } else
-                Flowable.empty<UserEntity>()
         }
     }
 
     override fun logout() {
+        SystemClock.sleep(1000)
         session = null
     }
 
-    override fun getUser(id: String): Flowable<UserEntity> {
+    override fun getUser(id: String): UserEntity? {
+        SystemClock.sleep(1000)
         return if (session == null)
-            Flowable.error<UserEntity>(RuntimeException("Unauthorized"))
+            throw RuntimeException("Unauthorized")
         else
-            users.keys.firstOrNull {
-                TextUtils.equals(id, it)
-            }.let {
-                if (it != null) {
-                    Flowable.just(it as UserEntity)
-                } else
-                    Flowable.empty<UserEntity>()
-            }
+            users.entries.firstOrNull {
+                TextUtils.equals(id, it.key)
+            }?.value
     }
 }
