@@ -6,8 +6,6 @@ import com.github.syafiqq.daggertest002.model.api.IdentityServer
 import com.github.syafiqq.daggertest002.model.api.IdentityServerImpl
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProviderImpl
-import com.github.syafiqq.daggertest002.model.di.misc.AppInjectorContract
-import com.github.syafiqq.daggertest002.model.di.misc.AppInjectorImpl
 import com.github.syafiqq.daggertest002.model.dump.CounterContract
 import com.github.syafiqq.daggertest002.model.dump.CounterImpl
 import com.github.syafiqq.daggertest002.model.service.identity.UserManager
@@ -30,11 +28,6 @@ object StaticAppModule {
     @Singleton
     @JvmStatic
     fun provideApplicationContext(app: App): Context = app
-
-    @Provides
-    @Singleton
-    @JvmStatic
-    fun provideAppInjector(app: App): AppInjectorContract = AppInjectorImpl(app)
 
     @Provides
     @Singleton
