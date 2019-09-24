@@ -15,7 +15,7 @@ class UserManagerImpl @Inject constructor(private val server: IdentityServer) : 
                     session = it
                     Flowable.just(it)
                 } else
-                    Flowable.empty<UserEntity>()
+                    Flowable.error<UserEntity>(RuntimeException("Not Registered"))
             }
         }
     }
