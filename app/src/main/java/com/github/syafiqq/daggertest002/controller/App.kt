@@ -8,19 +8,20 @@ import com.github.syafiqq.daggertest002.BuildConfig
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.di.component.AppComponent
 import com.github.syafiqq.daggertest002.model.di.component.DaggerAppComponent
+import com.github.syafiqq.daggertest002.model.di.misc.AppInjectorContract
+import com.github.syafiqq.daggertest002.model.di.misc.HasAppComponent
 import com.github.syafiqq.daggertest002.model.dump.CounterContract
+import dagger.Lazy
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
-interface HasAppComponent {
-    var appComponent: AppComponent
-}
-
 class App : DaggerApplication(), HasAppComponent {
     override lateinit var appComponent: AppComponent
+    @Inject
+    lateinit var injector: Lazy<AppInjectorContract>
     @Inject
     lateinit var context: Context
     @Inject

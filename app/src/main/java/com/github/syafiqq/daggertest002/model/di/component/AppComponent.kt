@@ -21,5 +21,6 @@ interface AppComponent : AndroidInjector<App> {
     @Component.Factory
     interface Factory : AndroidInjector.Factory<App>
 
+    fun userComponent(): UserComponent.Factory
     fun userManager(): UserManager
 }

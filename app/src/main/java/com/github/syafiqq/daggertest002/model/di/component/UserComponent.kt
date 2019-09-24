@@ -1,15 +1,20 @@
 package com.github.syafiqq.daggertest002.model.di.component
 
-import com.github.syafiqq.daggertest002.controller.HomeActivity
+import com.github.syafiqq.daggertest002.controller.App
 import com.github.syafiqq.daggertest002.model.di.module.UserMapperModule
 import com.github.syafiqq.daggertest002.model.di.scope.UserScope
-import dagger.Component
+import dagger.Subcomponent
+import dagger.android.AndroidInjector
+import dagger.android.support.AndroidSupportInjectionModule
 
 @UserScope
-@Component(
-    modules = [UserMapperModule::class],
-    dependencies = [AppComponent::class]
+@Subcomponent(
+    modules = [
+        AndroidSupportInjectionModule::class,
+        UserMapperModule::class
+    ]
 )
-interface UserComponent {
-    fun inject(home: HomeActivity)
+interface UserComponent : AndroidInjector<App> {
+    @Subcomponent.Factory
+    interface Factory : AndroidInjector.Factory<App>
 }
