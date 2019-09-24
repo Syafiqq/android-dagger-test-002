@@ -19,39 +19,6 @@ import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
-class Dafuq : HasAndroidInjector {
-    var app: App? = null
-    private var component: UserComponent? = null
-    @Inject
-    @Volatile
-    var androidInjector: DispatchingAndroidInjector<Any>? = null
-
-    private fun injectIfNecessary() {
-        if (androidInjector == null) {
-            synchronized(this) {
-                if (androidInjector == null) {
-                    val applicationInjector = applicationInjector()
-                    applicationInjector.inject(this)
-                    checkNotNull(androidInjector) { "The AndroidInjector returned from applicationInjector() did not inject the " + "DaggerApplication" }
-                }
-            }
-        }
-    }
-
-    fun applicationInjector(): AndroidInjector<Dafuq> {
-/*        if (component == null)
-            component = app.appComponent.userComponent().create(this) as UserComponent
-        return component!!*/
-        return component!!
-    }
-
-    override fun androidInjector(): AndroidInjector<Any> {
-        injectIfNecessary()
-
-        return androidInjector!!
-    }
-}
-
 class App : DaggerApplication(), HasAppComponent {
     override lateinit var appComponent: AppComponent
     @Inject
@@ -65,10 +32,6 @@ class App : DaggerApplication(), HasAppComponent {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         appComponent = DaggerAppComponent.factory().create(this) as AppComponent
         return appComponent
-    }
-
-    var userInjection = Dafuq()?.apply {
-        app = this@App
     }
 
     override fun onCreate() {

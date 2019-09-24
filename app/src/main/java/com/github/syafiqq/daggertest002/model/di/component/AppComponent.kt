@@ -5,14 +5,14 @@ import com.github.syafiqq.daggertest002.model.di.module.ActivityMapperModule
 import com.github.syafiqq.daggertest002.model.di.module.AppModule
 import com.github.syafiqq.daggertest002.model.service.identity.UserManager
 import dagger.Component
+import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 @Singleton
 @Component(
     modules = [
-        AndroidSupportInjectionModule::class,
+        AndroidInjectionModule::class,
         AppModule::class,
         ActivityMapperModule::class
     ]

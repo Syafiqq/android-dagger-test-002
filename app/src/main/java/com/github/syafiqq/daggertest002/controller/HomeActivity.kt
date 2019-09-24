@@ -45,7 +45,6 @@ class HomeActivity : AppCompatActivity(), DetailFragment.InteractionListener {
             )
         }
 
-        application.userInjection.androidInjector().inject(this)
     }
 
 }
