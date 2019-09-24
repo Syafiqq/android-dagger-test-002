@@ -8,6 +8,7 @@ import android.os.SystemClock
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.github.syafiqq.daggertest002.R
+import dagger.android.AndroidInjection
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -40,6 +41,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         Timber.d("onCreate [saveInstanceState]")
         super.onCreate(savedInstanceState)
 
