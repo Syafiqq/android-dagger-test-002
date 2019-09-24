@@ -8,11 +8,11 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class ActivityMapperModule {
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [SplashScreenModule::class])
     @ActivityScope
-    abstract fun contributeDumpAndroidInjector(): SplashScreenActivity
+    abstract fun contributeSplashActivityInjector(): SplashScreenActivity
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [LoginModule::class])
     @ActivityScope
-    abstract fun contributeDetailAndroidInjector(): LoginActivity
+    abstract fun contributeLoginActivityInjector(): LoginActivity
 }

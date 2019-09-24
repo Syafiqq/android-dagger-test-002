@@ -18,6 +18,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 import timber.log.Timber
 import javax.inject.Inject
+import javax.inject.Named
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -25,7 +26,11 @@ import javax.inject.Inject
  */
 class SplashScreenActivity : AppCompatActivity() {
     @Inject
+    @field:Named("app-scope")
     lateinit var counter: CounterContract
+    @Inject
+    @field:Named("activity-scope")
+    lateinit var counter1: CounterContract
     private val mHideHandler = Handler()
     private val mHidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -62,10 +67,14 @@ class SplashScreenActivity : AppCompatActivity() {
                 }
             }
         Handler().postDelayed(100) {
-            Timber.d("CounterContract : ${counter == null}")
+            Timber.d("App Counter ${counter == null}")
+            Timber.d("Activity Counter : ${counter1 == null}")
 
-            for(i in 1..5) {
-                Timber.d("CounterContract : [${counter.value}]")
+            for (i in 1..5) {
+                Timber.d("App Counter [${counter.value}]")
+            }
+            for (i in 1..5) {
+                Timber.d("Activity Counter : [${counter1.value}]")
             }
         }
     }

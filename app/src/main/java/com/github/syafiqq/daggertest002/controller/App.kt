@@ -12,13 +12,15 @@ import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 import timber.log.Timber
 import javax.inject.Inject
+import javax.inject.Named
 
 class App : DaggerApplication() {
     @Inject
-    lateinit var context:Context
+    lateinit var context: Context
     @Inject
     lateinit var schedulers: SchedulerProvider
     @Inject
+    @field:Named("app-scope")
     lateinit var counter: CounterContract
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
@@ -33,13 +35,13 @@ class App : DaggerApplication() {
             Timber.plant(CrashReportingTree())
         }
 
-        Handler().postDelayed(2000) {
+        Handler().postDelayed(100) {
             Timber.d("Context : ${context == null}")
             Timber.d("SchedulerProvider : ${schedulers == null}")
-            Timber.d("CounterContract : ${counter == null}")
+            Timber.d("App Counter ${counter == null}")
 
-            for(i in 1..5) {
-                Timber.d("CounterContract : [${counter.value}]")
+            for (i in 1..5) {
+                Timber.d("App Counter [${counter.value}]")
             }
         }
     }
