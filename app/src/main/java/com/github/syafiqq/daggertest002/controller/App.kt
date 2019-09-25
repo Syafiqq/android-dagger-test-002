@@ -8,6 +8,7 @@ import com.github.syafiqq.daggertest002.BuildConfig
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.di.component.AppComponent
 import com.github.syafiqq.daggertest002.model.di.component.DaggerAppComponent
+import com.github.syafiqq.daggertest002.model.di.misc.HasAndroidInjectorAdv
 import com.github.syafiqq.daggertest002.model.di.misc.HasAppComponent
 import com.github.syafiqq.daggertest002.model.dump.CounterContract
 import dagger.android.AndroidInjector
@@ -16,7 +17,12 @@ import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
-class App : DaggerApplication(), HasAppComponent {
+
+interface HasInjector {
+    val injector: MutableMap<Class<*>, HasAndroidInjectorAdv<*, *>>
+}
+
+class App : DaggerApplication(), HasAppComponent, HasInjector {
     override lateinit var appComponent: AppComponent
     @Inject
     lateinit var context: Context
@@ -25,6 +31,8 @@ class App : DaggerApplication(), HasAppComponent {
     @Inject
     @field:Named("app-scope")
     lateinit var counter: CounterContract
+    @Inject
+    override lateinit var injector: MutableMap<Class<*>, HasAndroidInjectorAdv<*, *>>
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         appComponent = DaggerAppComponent.factory().create(this) as AppComponent
@@ -43,6 +51,7 @@ class App : DaggerApplication(), HasAppComponent {
             Timber.d("Context : ${context == null}")
             Timber.d("SchedulerProvider : ${schedulers == null}")
             Timber.d("App Counter ${counter == null}")
+            Timber.d("Injector ${injector == null} - ${injector?.size}")
 
             for (i in 1..5) {
                 Timber.d("App Counter [${counter.value}]")
