@@ -16,7 +16,7 @@ class InjectorModule {
     @Provides
     @IntoMap
     @ClassKey(UserComponent::class)
-    fun provideThingValue(app: HasAppComponent): HasAndroidInjectorAdv<UserComponentInjector, UserComponent> {
+    fun provideThingValue(app: HasAppComponent): HasAndroidInjectorAdv<*, *> {
         return UserComponentInjector(app)
     }
 }
