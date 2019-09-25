@@ -8,11 +8,11 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class UserMapperModule {
-    @ContributesAndroidInjector(modules = [UserHomeMapperModule::class])
+    @ContributesAndroidInjector(modules = [UserHomeModule::class, UserHomeMapperModule::class])
     @ActivityScope
     abstract fun contributeHomeActivityInjector(): HomeActivity
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [UserDetailModule::class])
     @ActivityScope
     abstract fun contributeDetailActivityInjector(): UserDetailActivity
 }
