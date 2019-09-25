@@ -10,9 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.R
 import com.github.syafiqq.daggertest002.custom.dagger.android.AndroidInjection
+import com.github.syafiqq.daggertest002.model.api.IdentityServer
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.dump.CounterContract
 import com.github.syafiqq.daggertest002.model.entity.UserEntity
+import com.github.syafiqq.daggertest002.model.service.identity.UserManager
 import io.reactivex.Observer
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_login.*
@@ -23,11 +25,13 @@ import javax.inject.Named
 
 class LoginActivity : AppCompatActivity() {
     @Inject
-    lateinit var manager: com.github.syafiqq.daggertest002.model.service.identity.UserManager
-    @Inject
     lateinit var context: Context
     @Inject
     lateinit var schedulers: SchedulerProvider
+    @Inject
+    lateinit var userManager: UserManager
+    @Inject
+    lateinit var identityServer: IdentityServer
     @Inject
     @field:Named("app-scope")
     lateinit var counter: CounterContract
@@ -43,11 +47,12 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         Handler().postDelayed(100) {
-            Timber.d("User Manager ${manager == null}")
-            Timber.d("Context ${context == null}")
-            Timber.d("Scheduler Provider ${schedulers== null}")
-            Timber.d("App Counter ${counter == null}")
-            Timber.d("Activity Counter : ${counter1 == null}")
+            Timber.d("Context : ${context == null} ${System.identityHashCode(context)}")
+            Timber.d("SchedulerProvider : ${schedulers == null} ${System.identityHashCode(schedulers)}")
+            Timber.d("UserManager : ${userManager == null} ${System.identityHashCode(userManager)}")
+            Timber.d("IdentityServer : ${identityServer == null} ${System.identityHashCode(identityServer)}")
+            Timber.d("App Counter ${counter == null} ${System.identityHashCode(counter)}")
+            Timber.d("Activity Counter : ${counter1 == null} ${System.identityHashCode(counter1)}")
 
             for (i in 1..5) {
                 Timber.d("App Counter [${counter.value}]")
@@ -76,7 +81,7 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
         }
 
-        manager
+        userManager
             .login(email.editText?.text.toString(), password.editText?.text.toString())
             .subscribeOn(schedulers.computation())
             .observeOn(schedulers.ui())

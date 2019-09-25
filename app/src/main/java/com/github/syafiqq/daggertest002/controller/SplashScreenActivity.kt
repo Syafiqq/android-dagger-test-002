@@ -1,6 +1,7 @@
 package com.github.syafiqq.daggertest002.controller
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -10,7 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.R
 import com.github.syafiqq.daggertest002.custom.dagger.android.AndroidInjection
+import com.github.syafiqq.daggertest002.model.api.IdentityServer
+import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.dump.CounterContract
+import com.github.syafiqq.daggertest002.model.service.identity.UserManager
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -26,11 +30,20 @@ import javax.inject.Named
  */
 class SplashScreenActivity : AppCompatActivity() {
     @Inject
+    lateinit var context: Context
+    @Inject
+    lateinit var schedulers: SchedulerProvider
+    @Inject
+    lateinit var userManager: UserManager
+    @Inject
+    lateinit var identityServer: IdentityServer
+    @Inject
     @field:Named("app-scope")
     lateinit var counter: CounterContract
     @Inject
     @field:Named("activity-scope")
     lateinit var counter1: CounterContract
+
     private val mHideHandler = Handler()
     private val mHidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -67,8 +80,12 @@ class SplashScreenActivity : AppCompatActivity() {
                 }
             }
         Handler().postDelayed(100) {
-            Timber.d("App Counter ${counter == null}")
-            Timber.d("Activity Counter : ${counter1 == null}")
+            Timber.d("Context : ${context == null} ${System.identityHashCode(context)}")
+            Timber.d("SchedulerProvider : ${schedulers == null} ${System.identityHashCode(schedulers)}")
+            Timber.d("UserManager : ${userManager == null} ${System.identityHashCode(userManager)}")
+            Timber.d("IdentityServer : ${identityServer == null} ${System.identityHashCode(identityServer)}")
+            Timber.d("App Counter ${counter == null} ${System.identityHashCode(counter)}")
+            Timber.d("Activity Counter : ${counter1 == null} ${System.identityHashCode(counter1)}")
 
             for (i in 1..5) {
                 Timber.d("App Counter [${counter.value}]")

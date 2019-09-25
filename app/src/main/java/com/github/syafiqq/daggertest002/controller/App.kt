@@ -7,11 +7,13 @@ import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.BuildConfig
 import com.github.syafiqq.daggertest002.custom.dagger.android.DaggerApplication
 import com.github.syafiqq.daggertest002.custom.dagger.android.DefClass
+import com.github.syafiqq.daggertest002.model.api.IdentityServer
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.di.component.AppComponent
 import com.github.syafiqq.daggertest002.model.di.component.DaggerAppComponent
 import com.github.syafiqq.daggertest002.model.di.component.UserComponent
 import com.github.syafiqq.daggertest002.model.dump.CounterContract
+import com.github.syafiqq.daggertest002.model.service.identity.UserManager
 import dagger.android.AndroidInjector
 import timber.log.Timber
 import javax.inject.Inject
@@ -23,6 +25,10 @@ class App : DaggerApplication() {
     lateinit var context: Context
     @Inject
     lateinit var schedulers: SchedulerProvider
+    @Inject
+    lateinit var userManager: UserManager
+    @Inject
+    lateinit var identityServer: IdentityServer
     @Inject
     @field:Named("app-scope")
     lateinit var counter: CounterContract
@@ -52,9 +58,11 @@ class App : DaggerApplication() {
         }
 
         Handler().postDelayed(100) {
-            Timber.d("Context : ${context == null}")
-            Timber.d("SchedulerProvider : ${schedulers == null}")
-            Timber.d("App Counter ${counter == null}")
+            Timber.d("Context : ${context == null} ${System.identityHashCode(context)}")
+            Timber.d("SchedulerProvider : ${schedulers == null} ${System.identityHashCode(schedulers)}")
+            Timber.d("UserManager : ${userManager == null} ${System.identityHashCode(userManager)}")
+            Timber.d("IdentityServer : ${identityServer == null} ${System.identityHashCode(identityServer)}")
+            Timber.d("App Counter ${counter == null} ${System.identityHashCode(counter)}")
 
             for (i in 1..5) {
                 Timber.d("App Counter [${counter.value}]")
