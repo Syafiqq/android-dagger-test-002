@@ -6,7 +6,6 @@ import android.util.Log
 import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.BuildConfig
 import com.github.syafiqq.daggertest002.custom.dagger.android.DaggerApplication
-import com.github.syafiqq.daggertest002.custom.dagger.android.DefClass
 import com.github.syafiqq.daggertest002.model.api.IdentityServer
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.di.component.AppComponent
@@ -39,7 +38,7 @@ class App : DaggerApplication() {
     ): AndroidInjector<*> {
         return when (cls) {
             UserComponent::class.java -> {
-                val appComponent = holder[DefClass::class.java] as AppComponent
+                val appComponent = holder[AppComponent::class.java] as AppComponent
                 appComponent.userComponent().create(this)
             }
             else -> {
@@ -48,6 +47,8 @@ class App : DaggerApplication() {
         }
 
     }
+
+    override fun rootComponent(): Class<*> = AppComponent::class.java
 
     override fun onCreate() {
         super.onCreate()

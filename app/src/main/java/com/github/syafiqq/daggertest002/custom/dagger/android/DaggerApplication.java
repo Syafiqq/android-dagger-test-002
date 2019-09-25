@@ -30,7 +30,7 @@ public abstract class DaggerApplication extends Application implements HasAndroi
     @Override
     public void onCreate() {
         super.onCreate();
-        injectIfNecessary(DefClass.class);
+        injectIfNecessary(rootComponent());
     }
 
     /**
@@ -38,6 +38,8 @@ public abstract class DaggerApplication extends Application implements HasAndroi
      * dagger.android.DaggerApplication}. Typically, that injector is a {@link dagger.Component}.
      */
     protected abstract AndroidInjector<?> applicationInjector(Class<?> cls, Map<Class<?>, Object> holders);
+
+    protected abstract Class<?> rootComponent();
 
     /**
      * Lazily injects the {@link dagger.android.DaggerApplication}'s members. Injection cannot be performed in {@link
@@ -78,7 +80,7 @@ public abstract class DaggerApplication extends Application implements HasAndroi
     public AndroidInjector<Object> androidInjector() {
         // injectIfNecessary should already be called unless we are about to inject a ContentProvider,
         // which can happen before Application.onCreate()
-        return androidInjector(DefClass.class);
+        return androidInjector(rootComponent());
     }
 
     @Override
