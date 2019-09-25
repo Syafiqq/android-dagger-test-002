@@ -74,6 +74,11 @@ abstract class DaggerApplication : Application(), HasAndroidInjector {
         return androidInjector
     }
 
+    @Synchronized
+    override fun androidInjector(): AndroidInjector<Any>? {
+        return androidInjector(DefClass::class.java)
+    }
+
     override fun clear(cls: Class<*>) {
         holder.remove(cls)
         injectors.remove(cls)
