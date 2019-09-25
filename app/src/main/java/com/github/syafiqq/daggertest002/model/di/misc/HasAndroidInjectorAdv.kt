@@ -1,16 +1,24 @@
-package com.github.syafiqq.daggertest002.controller
+package com.github.syafiqq.daggertest002.model.di.misc
 
+import android.app.Application
 import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-class Dafuq : HasAndroidInjector {
-    lateinit var app: App
+abstract class HasAndroidInjectorAdv<T, C : AndroidInjector<T>> : HasAndroidInjector {
+    var component: C? = null
+
     @Inject
     @Volatile
     @JvmField
     var androidInjector: DispatchingAndroidInjector<Any>? = null
+
+    /**
+     * Implementations should return an [AndroidInjector] for the concrete [ ]. Typically, that injector is a [dagger.Component].
+     */
+    protected abstract fun applicationInjector(): C
 
     /**
      * Lazily injects the [DaggerApplication]'s members. Injection cannot be performed in [ ][Application.onCreate] since [android.content.ContentProvider]s' [ ][android.content.ContentProvider.onCreate] method will be called first and might
@@ -22,17 +30,12 @@ class Dafuq : HasAndroidInjector {
         if (androidInjector == null) {
             synchronized(this) {
                 if (androidInjector == null) {
-                    val applicationInjector =
-                        applicationInjector() as AndroidInjector<Dafuq>
-                    applicationInjector.inject(this)
+                    val applicationInjector = applicationInjector()
+                    applicationInjector.inject(this as T)
                     checkNotNull(androidInjector) { "The AndroidInjector returned from applicationInjector() did not inject the " + "DaggerApplication" }
                 }
             }
         }
-    }
-
-    fun applicationInjector(): AndroidInjector<Dafuq> {
-        return app.appComponent.userComponent().create(this)
     }
 
     override fun androidInjector(): AndroidInjector<Any>? {
