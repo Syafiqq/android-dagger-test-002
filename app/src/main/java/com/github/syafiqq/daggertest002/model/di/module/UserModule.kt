@@ -6,10 +6,13 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Named
 
+@Module(includes = [StaticUserModule::class])
+abstract class UserModule
+
 @Module
-object SplashScreenModule {
+object StaticUserModule {
     @Provides
     @JvmStatic
-    @Named("activity-scope")
+    @Named("user-scope")
     fun providedCounter(): CounterContract = CounterImpl(0)
 }
