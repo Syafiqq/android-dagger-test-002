@@ -36,7 +36,7 @@ abstract class DaggerApplication : Application(), HasAndroidInjector {
     protected abstract fun applicationInjector(
         cls: Class<*>,
         holder: MutableMap<Class<*>, Any>
-    ): AndroidInjector<Any>
+    ): AndroidInjector<*>
 
     /**
      * Lazily injects the [DaggerApplication]'s members. Injection cannot be performed in [ ][Application.onCreate] since [android.content.ContentProvider]s' [ ][android.content.ContentProvider.onCreate] method will be called first and might
