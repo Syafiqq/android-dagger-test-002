@@ -10,7 +10,6 @@ import dagger.android.AndroidInjector
 @UserScope
 @Subcomponent(
     modules = [
-        AndroidInjectionModule::class,
         UserMapperModule::class
     ]
 )
