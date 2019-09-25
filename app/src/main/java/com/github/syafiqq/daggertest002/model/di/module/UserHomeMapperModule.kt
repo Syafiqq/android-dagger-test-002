@@ -8,11 +8,11 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class UserHomeMapperModule {
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [UserHomeFragmentModule::class])
     @FragmentScope
     abstract fun contributeHomeFragment(): UserFragment
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [UserDetailFragmentModule::class])
     @FragmentScope
     abstract fun contributeDetailFragment(): DetailFragment
 }
