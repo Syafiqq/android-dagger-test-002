@@ -1,6 +1,6 @@
 package com.github.syafiqq.daggertest002.model.di.component
 
-import com.github.syafiqq.daggertest002.model.di.misc.UserComponentInjector
+import com.github.syafiqq.daggertest002.model.di.injector.UserComponentInjector
 import com.github.syafiqq.daggertest002.model.di.module.UserMapperModule
 import com.github.syafiqq.daggertest002.model.di.scope.UserScope
 import dagger.Subcomponent

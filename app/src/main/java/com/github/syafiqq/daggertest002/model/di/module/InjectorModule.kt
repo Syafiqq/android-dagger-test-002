@@ -1,9 +1,9 @@
 package com.github.syafiqq.daggertest002.model.di.module
 
 import com.github.syafiqq.daggertest002.model.di.component.UserComponent
-import com.github.syafiqq.daggertest002.model.di.misc.HasAndroidInjectorAdv
+import com.github.syafiqq.daggertest002.model.di.injector.HasAndroidInjectorAdv
 import com.github.syafiqq.daggertest002.model.di.misc.HasAppComponent
-import com.github.syafiqq.daggertest002.model.di.misc.UserComponentInjector
+import com.github.syafiqq.daggertest002.model.di.injector.UserComponentInjector
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ClassKey

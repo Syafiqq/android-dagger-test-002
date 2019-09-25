@@ -1,7 +1,6 @@
 package com.github.syafiqq.daggertest002.model.di.component
 
 import com.github.syafiqq.daggertest002.controller.App
-import com.github.syafiqq.daggertest002.model.di.misc.HasAndroidInjectorAdv
 import com.github.syafiqq.daggertest002.model.di.module.ActivityMapperModule
 import com.github.syafiqq.daggertest002.model.di.module.AppModule
 import com.github.syafiqq.daggertest002.model.di.module.InjectorModule

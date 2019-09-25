@@ -1,4 +1,4 @@
-package com.github.syafiqq.daggertest002.model.di.misc
+package com.github.syafiqq.daggertest002.model.di.injector
 
 import android.app.Application
 import dagger.android.AndroidInjector

@@ -8,7 +8,7 @@ import com.github.syafiqq.daggertest002.BuildConfig
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.di.component.AppComponent
 import com.github.syafiqq.daggertest002.model.di.component.DaggerAppComponent
-import com.github.syafiqq.daggertest002.model.di.misc.HasAndroidInjectorAdv
+import com.github.syafiqq.daggertest002.model.di.injector.HasAndroidInjectorAdv
 import com.github.syafiqq.daggertest002.model.di.misc.HasAppComponent
 import com.github.syafiqq.daggertest002.model.dump.CounterContract
 import dagger.android.AndroidInjector
