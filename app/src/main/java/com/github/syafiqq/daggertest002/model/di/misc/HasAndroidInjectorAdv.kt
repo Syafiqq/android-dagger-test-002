@@ -45,4 +45,13 @@ abstract class HasAndroidInjectorAdv<T, C : AndroidInjector<T>> : HasAndroidInje
 
         return androidInjector
     }
+
+    fun acquire() {
+        injectIfNecessary()
+    }
+
+    fun release() {
+        component = null
+        androidInjector = null
+    }
 }
