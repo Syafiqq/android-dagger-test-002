@@ -9,10 +9,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.R
+import com.github.syafiqq.daggertest002.custom.dagger.android.AndroidInjection
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.dump.CounterContract
 import com.github.syafiqq.daggertest002.model.entity.UserEntity
-import dagger.android.AndroidInjection
 import io.reactivex.Observer
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_login.*
@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var counter1: CounterContract
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
+        AndroidInjection.inject(this, null)
         Timber.d("onCreate [savedInstanceState]")
 
         super.onCreate(savedInstanceState)

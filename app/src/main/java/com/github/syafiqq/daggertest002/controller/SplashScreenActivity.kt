@@ -9,8 +9,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.R
+import com.github.syafiqq.daggertest002.custom.dagger.android.AndroidInjection
 import com.github.syafiqq.daggertest002.model.dump.CounterContract
-import dagger.android.AndroidInjection
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -51,7 +51,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
+        AndroidInjection.inject(this, null)
         Timber.d("onCreate [saveInstanceState]")
         super.onCreate(savedInstanceState)
 

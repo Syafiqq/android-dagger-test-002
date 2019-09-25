@@ -5,18 +5,19 @@ import android.os.Handler
 import android.util.Log
 import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.BuildConfig
+import com.github.syafiqq.daggertest002.custom.dagger.android.DaggerApplication
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.di.component.AppComponent
 import com.github.syafiqq.daggertest002.model.di.component.DaggerAppComponent
+import com.github.syafiqq.daggertest002.model.di.component.UserComponent
 import com.github.syafiqq.daggertest002.model.dump.CounterContract
 import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
 
 
-class App : DaggerApplication(){
+class App : DaggerApplication() {
     @Inject
     lateinit var context: Context
     @Inject
@@ -25,8 +26,20 @@ class App : DaggerApplication(){
     @field:Named("app-scope")
     lateinit var counter: CounterContract
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerAppComponent.factory().create(this) as AppComponent
+    override fun applicationInjector(
+        cls: Class<*>,
+        holder: MutableMap<Class<*>, Any>
+    ): AndroidInjector<*> {
+        return when (cls) {
+            UserComponent::class.java -> {
+                val appComponent = holder[DefClass::class.java] as AppComponent
+                appComponent.userComponent().create(this)
+            }
+            else -> {
+                DaggerAppComponent.factory().create(this)
+            }
+        }
+
     }
 
     override fun onCreate() {

@@ -1,14 +1,13 @@
 package com.github.syafiqq.daggertest002.controller
 
-import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.R
+import com.github.syafiqq.daggertest002.custom.dagger.android.AndroidInjection
 import com.github.syafiqq.daggertest002.model.di.component.UserComponent
 import com.google.android.material.snackbar.Snackbar
-import dagger.android.HasAndroidInjector
 import kotlinx.android.synthetic.main.activity_home.*
 import timber.log.Timber
 import javax.inject.Inject
@@ -18,7 +17,7 @@ class HomeActivity : AppCompatActivity(), DetailFragment.InteractionListener {
     lateinit var manager: com.github.syafiqq.daggertest002.model.service.identity.UserManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        inject(this)
+        AndroidInjection.inject(this, UserComponent::class.java)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
@@ -31,19 +30,4 @@ class HomeActivity : AppCompatActivity(), DetailFragment.InteractionListener {
             Timber.d("User Manager ${manager == null}")
         }
     }
-
-    fun inject(activity: Activity) {
-/*        val application = activity.application
-        if (application !is HasInjector) {
-            throw RuntimeException(
-                String.format(
-                    "%s does not implement %s",
-                    application.javaClass.canonicalName,
-                    HasAndroidInjector::class.java.canonicalName
-                )
-            )
-        }
-        application.injector[UserComponent::class.java]?.androidInjector()?.inject(this)*/
-    }
-
 }
