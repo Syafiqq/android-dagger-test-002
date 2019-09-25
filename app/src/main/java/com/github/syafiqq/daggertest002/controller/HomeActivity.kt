@@ -65,7 +65,7 @@ class HomeActivity : DaggerAppCompatActivity(), DetailFragment.InteractionListen
             Timber.d("IdentityServer : ${identityServer == null} ${System.identityHashCode(identityServer)}")
             Timber.d("App Counter ${counter == null} ${System.identityHashCode(counter)}")
             Timber.d("Activity Counter : ${counter1 == null} ${System.identityHashCode(counter1)}")
-            Timber.d("User Counter : ${counter2 == null} ${System.identityHashCode(counter1)}")
+            Timber.d("User Counter : ${counter2 == null} ${System.identityHashCode(counter2)}")
 
             for (i in 1..5) {
                 Timber.d("App Counter [${counter.value}]")
