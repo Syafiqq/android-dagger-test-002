@@ -162,7 +162,11 @@ public final class AndroidInjection {
     }
 
     private static void inject(Object target, HasAndroidInjector hasAndroidInjector, Class<?> cls) {
-        AndroidInjector<Object> androidInjector = hasAndroidInjector.androidInjector(cls);
+        AndroidInjector<Object> androidInjector;
+        if (cls == null)
+            androidInjector = hasAndroidInjector.androidInjector();
+        else
+            androidInjector = hasAndroidInjector.androidInjector(cls);
         checkNotNull(
                 androidInjector, "%s.androidInjector() returned null", hasAndroidInjector.getClass());
 
