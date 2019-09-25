@@ -15,7 +15,7 @@ import javax.inject.Inject
  */
 @Beta
 abstract class DaggerApplication : Application(), HasAndroidInjector {
-    private class DefClass
+    class DefClass
 
     private var holder: MutableMap<Class<*>, Any> = mutableMapOf()
     private var injectors: MutableMap<Class<*>, DispatchingAndroidInjector<Any>> = mutableMapOf()
