@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.syafiqq.daggertest002.R
+import dagger.android.support.AndroidSupportInjection
 
 /**
  * A simple [Fragment] subclass.
@@ -34,6 +35,7 @@ class DetailFragment : Fragment() {
     }
 
     override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
         super.onAttach(context)
         if (context is InteractionListener) {
             listener = context
