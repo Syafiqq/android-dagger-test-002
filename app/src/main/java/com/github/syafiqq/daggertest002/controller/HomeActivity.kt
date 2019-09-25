@@ -6,9 +6,8 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.R
+import com.github.syafiqq.daggertest002.model.di.component.UserComponent
 import com.google.android.material.snackbar.Snackbar
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
 import dagger.android.HasAndroidInjector
 import kotlinx.android.synthetic.main.activity_home.*
 import timber.log.Timber
@@ -35,7 +34,7 @@ class HomeActivity : AppCompatActivity(), DetailFragment.InteractionListener {
 
     fun inject(activity: Activity) {
         val application = activity.application
-        if (application !is App) {
+        if (application !is HasInjector) {
             throw RuntimeException(
                 String.format(
                     "%s does not implement %s",
@@ -44,7 +43,7 @@ class HomeActivity : AppCompatActivity(), DetailFragment.InteractionListener {
                 )
             )
         }
-
+        application.injector[UserComponent::class.java]?.androidInjector()?.inject(this)
     }
 
 }
