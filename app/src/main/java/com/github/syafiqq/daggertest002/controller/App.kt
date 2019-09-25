@@ -48,12 +48,6 @@ class App : DaggerApplication(), HasAppComponent {
                 Timber.d("App Counter [${counter.value}]")
             }
         }
-
-        Handler().postDelayed(1000) {
-            Dafuq().apply {
-                app = this@App
-            }.androidInjector()
-        }
     }
 
     private class CrashReportingTree : Timber.Tree() {
