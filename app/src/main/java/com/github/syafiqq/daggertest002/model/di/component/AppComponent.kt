@@ -3,7 +3,6 @@ package com.github.syafiqq.daggertest002.model.di.component
 import com.github.syafiqq.daggertest002.controller.App
 import com.github.syafiqq.daggertest002.model.di.module.ActivityMapperModule
 import com.github.syafiqq.daggertest002.model.di.module.AppModule
-import com.github.syafiqq.daggertest002.model.di.module.InjectorModule
 import com.github.syafiqq.daggertest002.model.service.identity.UserManager
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -15,8 +14,7 @@ import javax.inject.Singleton
     modules = [
         AndroidInjectionModule::class,
         AppModule::class,
-        ActivityMapperModule::class,
-        InjectorModule::class
+        ActivityMapperModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {

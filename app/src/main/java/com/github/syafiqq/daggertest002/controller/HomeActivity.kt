@@ -33,7 +33,7 @@ class HomeActivity : AppCompatActivity(), DetailFragment.InteractionListener {
     }
 
     fun inject(activity: Activity) {
-        val application = activity.application
+/*        val application = activity.application
         if (application !is HasInjector) {
             throw RuntimeException(
                 String.format(
@@ -43,7 +43,7 @@ class HomeActivity : AppCompatActivity(), DetailFragment.InteractionListener {
                 )
             )
         }
-        application.injector[UserComponent::class.java]?.androidInjector()?.inject(this)
+        application.injector[UserComponent::class.java]?.androidInjector()?.inject(this)*/
     }
 
 }

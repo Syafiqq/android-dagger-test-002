@@ -1,6 +1,6 @@
 package com.github.syafiqq.daggertest002.model.di.component
 
-import com.github.syafiqq.daggertest002.model.di.injector.UserComponentInjector
+import com.github.syafiqq.daggertest002.controller.App
 import com.github.syafiqq.daggertest002.model.di.module.UserMapperModule
 import com.github.syafiqq.daggertest002.model.di.scope.UserScope
 import dagger.Subcomponent
@@ -14,7 +14,7 @@ import dagger.android.AndroidInjector
         UserMapperModule::class
     ]
 )
-interface UserComponent : AndroidInjector<UserComponentInjector> {
+interface UserComponent : AndroidInjector<App> {
     @Subcomponent.Factory
-    interface Factory : AndroidInjector.Factory<UserComponentInjector>
+    interface Factory : AndroidInjector.Factory<App>
 }
