@@ -8,12 +8,9 @@ import com.github.syafiqq.daggertest002.BuildConfig
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.di.component.AppComponent
 import com.github.syafiqq.daggertest002.model.di.component.DaggerAppComponent
-import com.github.syafiqq.daggertest002.model.di.component.UserComponent
 import com.github.syafiqq.daggertest002.model.di.misc.HasAppComponent
 import com.github.syafiqq.daggertest002.model.dump.CounterContract
 import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
 import dagger.android.support.DaggerApplication
 import timber.log.Timber
 import javax.inject.Inject
@@ -50,6 +47,12 @@ class App : DaggerApplication(), HasAppComponent {
             for (i in 1..5) {
                 Timber.d("App Counter [${counter.value}]")
             }
+        }
+
+        Handler().postDelayed(1000) {
+            Dafuq().apply {
+                app = this@App
+            }.androidInjector()
         }
     }
 
