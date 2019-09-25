@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.BuildConfig
 import com.github.syafiqq.daggertest002.custom.dagger.android.DaggerApplication
+import com.github.syafiqq.daggertest002.custom.dagger.android.DefClass
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.di.component.AppComponent
 import com.github.syafiqq.daggertest002.model.di.component.DaggerAppComponent
