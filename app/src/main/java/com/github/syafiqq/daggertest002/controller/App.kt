@@ -12,7 +12,7 @@ import com.github.syafiqq.daggertest002.model.di.injector.HasAndroidInjectorAdv
 import com.github.syafiqq.daggertest002.model.di.misc.HasAppComponent
 import com.github.syafiqq.daggertest002.model.dump.CounterContract
 import dagger.android.AndroidInjector
-import dagger.android.support.DaggerApplication
+import dagger.android.DaggerApplication
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Named
