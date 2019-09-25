@@ -19,6 +19,7 @@ import javax.inject.Singleton
 @Module(includes = [StaticAppModule::class])
 abstract class AppModule {
     @Binds
+    @Singleton
     abstract fun providerSchedulerProvider(provider: SchedulerProviderImpl): SchedulerProvider
 }
 
