@@ -8,7 +8,6 @@ import com.github.syafiqq.daggertest002.BuildConfig
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.di.component.AppComponent
 import com.github.syafiqq.daggertest002.model.di.component.DaggerAppComponent
-import com.github.syafiqq.daggertest002.model.di.misc.HasAppComponent
 import com.github.syafiqq.daggertest002.model.dump.CounterContract
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
@@ -17,8 +16,7 @@ import javax.inject.Inject
 import javax.inject.Named
 
 
-class App : DaggerApplication(), HasAppComponent {
-    override lateinit var appComponent: AppComponent
+class App : DaggerApplication(){
     @Inject
     lateinit var context: Context
     @Inject
@@ -28,8 +26,7 @@ class App : DaggerApplication(), HasAppComponent {
     lateinit var counter: CounterContract
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        appComponent = DaggerAppComponent.factory().create(this) as AppComponent
-        return appComponent
+        return DaggerAppComponent.factory().create(this) as AppComponent
     }
 
     override fun onCreate() {
