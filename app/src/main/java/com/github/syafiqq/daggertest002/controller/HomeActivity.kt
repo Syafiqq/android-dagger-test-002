@@ -7,8 +7,8 @@ import android.os.Handler
 import android.view.View
 import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.R
-import com.github.syafiqq.daggertest002.custom.dagger.android.AndroidInjection
-import com.github.syafiqq.daggertest002.custom.dagger.android.support.DaggerAppCompatActivity
+import com.github.syafiqq.ext.dagger.android.AndroidInjection
+import com.github.syafiqq.ext.dagger.android.support.DaggerAppCompatActivity
 import com.github.syafiqq.daggertest002.model.api.IdentityServer
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.di.component.UserComponent
@@ -41,7 +41,7 @@ class HomeActivity : DaggerAppCompatActivity(), DetailFragment.InteractionListen
     @field:Named("user-scope")
     lateinit var counter2: CounterContract
 
-    override fun desiredComponent(): Class<*> = UserComponent::class.java
+    override fun rootComponent(): Class<*> = UserComponent::class.java
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this, UserComponent::class.java)

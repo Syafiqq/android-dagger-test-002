@@ -10,7 +10,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.R
-import com.github.syafiqq.daggertest002.custom.dagger.android.AndroidInjection
+import com.github.syafiqq.ext.dagger.android.AndroidInjection
 import com.github.syafiqq.daggertest002.model.api.IdentityServer
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.dump.CounterContract

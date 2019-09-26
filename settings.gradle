@@ -1,2 +1,7 @@
-include ':app'
+include ':app', ':dagger-ext'
 rootProject.name='DaggerTest002'
+
+def properties = new Properties()
+properties.load(new File('local.properties').newDataInputStream())
+
+project(':dagger-ext').projectDir = new File(properties.getProperty('dagger-ext.dir').toString())

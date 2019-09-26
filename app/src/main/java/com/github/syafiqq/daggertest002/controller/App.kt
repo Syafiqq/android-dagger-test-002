@@ -5,7 +5,7 @@ import android.os.Handler
 import android.util.Log
 import androidx.core.os.postDelayed
 import com.github.syafiqq.daggertest002.BuildConfig
-import com.github.syafiqq.daggertest002.custom.dagger.android.DaggerApplication
+import com.github.syafiqq.ext.dagger.android.DaggerApplication
 import com.github.syafiqq.daggertest002.model.api.IdentityServer
 import com.github.syafiqq.daggertest002.model.concurrent.SchedulerProvider
 import com.github.syafiqq.daggertest002.model.di.component.AppComponent
